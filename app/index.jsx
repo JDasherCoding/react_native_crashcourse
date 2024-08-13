@@ -5,7 +5,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { images } from "../constants";
 import CustomButton from "../components/CustomButton";
+import { useGlobalContext } from "../context/GlobalProvider";
+
 export default function App() {
+	const { loading, isLogged } = useGlobalContext();
+
+	// TODO: Bug isLogged only initialized after sign-in or sign-up attempt
+	if (!loading && isLogged) return <Redirect href="/home" />;
+
 	return (
 		// Ensures content is not obstructed by statusbar, etc on different devices
 		<SafeAreaView className="bg-primary h-full">
@@ -45,9 +52,7 @@ export default function App() {
 
 					<CustomButton
 						title="Continue with Email"
-						handlePress={() => {
-							router.push("/sign-in");
-						}}
+						handlePress={() => router.push("/sign-in")}
 						containerStyles="w-full mt-7"
 					></CustomButton>
 				</View>
