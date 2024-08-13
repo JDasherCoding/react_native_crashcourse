@@ -1,0 +1,2 @@
+**CAUTION**
+NativeWind does not work with TailwindCSS >3.3.2. If you wish to use the most current version, please upgrade to NativeWind v4
