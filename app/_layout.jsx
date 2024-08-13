@@ -7,6 +7,7 @@ import { useFonts } from "expo-font";
 SplashScreen.preventAutoHideAsync();
 
 const RootLayout = () => {
+	// Loading Fonts
 	const [fontsLoaded, error] = useFonts({
 		"Poppins-Black": require("../assets/fonts/Poppins-Black.ttf"),
 		"Poppins-Bold": require("../assets/fonts/Poppins-Bold.ttf"),
@@ -19,13 +20,18 @@ const RootLayout = () => {
 		"Poppins-Thin": require("../assets/fonts/Poppins-Thin.ttf"),
 	});
 
+	// Error Handling for Font Loading
 	useEffect(() => {
 		if (error) throw error;
 
-		if (fontsLoaded) SplashScreen.hideAsync();
-
-		if (!fontsLoaded && !error) return null;
+		if (fontsLoaded) {
+			SplashScreen.hideAsync();
+		}
 	}, [fontsLoaded, error]);
+
+	if (!fontsLoaded && !error) {
+		return null;
+	}
 
 	return (
 		<Stack>
