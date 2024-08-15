@@ -2,16 +2,21 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { icons } from "../constants";
 import { ResizeMode, Video } from "expo-av";
-
+import AntDesign from "@expo/vector-icons/AntDesign";
 const VideoCard = ({
 	video: {
 		title,
 		thumbnail,
 		video,
 		creator: { username, avatar },
+		liked_by,
 	},
 }) => {
 	const [play, setPlay] = useState(false);
+	const [liked, setLiked] = useState(false);
+
+	console.log(liked_by);
+
 	return (
 		<View className="flex-col items-center px-4 mb-14">
 			<View className="flex-row gap-3 items-start">
@@ -41,7 +46,14 @@ const VideoCard = ({
 				</View>
 
 				<View className="pt-2">
-					<Image source={icons.menu} className="w-5 h-5" resizeMode="contain" />
+					<TouchableOpacity onPress={() => setLiked(!liked)}>
+						{/* <Image
+							source={icons.menu}
+							className="w-5 h-5"
+							resizeMode="contain"
+						/> */}
+						<AntDesign name="heart" size={24} color={liked ? "red" : "white"} />
+					</TouchableOpacity>
 				</View>
 			</View>
 

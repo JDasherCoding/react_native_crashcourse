@@ -33,7 +33,10 @@ const Search = () => {
 						</Text>
 						<Text className="text-2xl font-psemibold text-white">{query}</Text>
 						<View className="mt-6 mb-8">
-							<SearchInput initialQuery={query} />
+							<SearchInput
+								initialQuery={query}
+								placeholder="Search for a video topic"
+							/>
 						</View>
 					</View>
 				)}
